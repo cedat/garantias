@@ -1,3 +1,7 @@
+entidad_financiera:
+    resource: "@EntidadFinancieraBundle/Resources/config/routing.yml"
+    prefix:   /
+
 proveedor:
     resource: "@ProveedorBundle/Resources/config/routing.yml"
     prefix:   /

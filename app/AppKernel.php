@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new emisionGarantiaBundle\emisionGarantiaBundle(),
             new Comun\ComunBundle\ComunBundle(),
             new Proveedor\ProveedorBundle\ProveedorBundle(),
+            new EntidadFinanciera\EntidadFinancieraBundle\EntidadFinancieraBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

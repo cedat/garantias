@@ -1,0 +1,3 @@
+entidad_financiera_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EntidadFinancieraBundle:Default:index }
