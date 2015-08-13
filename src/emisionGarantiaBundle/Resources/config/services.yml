@@ -1,0 +1,4 @@
+services:
+#    emision_garantia.example:
+#        class: emisionGarantiaBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

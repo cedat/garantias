@@ -1,0 +1,7 @@
+emision_garantia:
+    resource: "@emisionGarantiaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
