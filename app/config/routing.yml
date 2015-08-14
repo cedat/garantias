@@ -1,3 +1,15 @@
+entidad_financiera:
+    resource: "@EntidadFinancieraBundle/Resources/config/routing.yml"
+    prefix:   /
+
+proveedor:
+    resource: "@ProveedorBundle/Resources/config/routing.yml"
+    prefix:   /
+
+comun:
+    resource: "@ComunBundle/Resources/config/routing.yml"
+    prefix:   /
+
 emision_garantia:
     resource: "@emisionGarantiaBundle/Resources/config/routing.yml"
     prefix:   /
