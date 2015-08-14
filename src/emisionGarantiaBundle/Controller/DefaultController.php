@@ -55,6 +55,7 @@ class DefaultController extends Controller
     
     public function logearProveedorAction()
     {                       
-        return $this->render('emisionGarantiaBundle:Default:identificarmeProv.html.twig');
+        $errorClave = FALSE;
+        return $this->render('emisionGarantiaBundle:Default:identificarmeProv.html.twig', array('errorClave' => $errorClave));
     }
 }
