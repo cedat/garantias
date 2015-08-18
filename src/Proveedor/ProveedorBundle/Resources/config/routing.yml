@@ -1,3 +1,19 @@
 proveedor_homepage:
     path:     /hello/{name}
     defaults: { _controller: ProveedorBundle:Default:index }
+
+solicitud_garantia_homepage:
+    path:     /solicitar
+    defaults: { _controller: ProveedorBundle:Default:solicitudGarantias }
+    
+aprobacion_garantia_homepage:
+    path:     /veraprobacion
+    defaults: { _controller: ProveedorBundle:Default:aprobacionGarantia }
+    
+solicitud_enviadagarantia_homepage:
+    path:     /solicitudRecibidas
+    defaults: { _controller: ProveedorBundle:Default:solicitudRecibidas }
+   
+descagar_garantia_homepage:
+    path:     /descargarContrato
+    defaults: { _controller: ProveedorBundle:Default:descargaGarantia }

@@ -1,36 +1,7 @@
 emision_garantia_homepage:
     path:     /hello/{name}
     defaults: { _controller: emisionGarantiaBundle:Default:index }
-
-solicitud_garantia_homepage:
-    path:     /solicitar
-    defaults: { _controller: emisionGarantiaBundle:Default:solicitudGarantias }
-    
-solicitud_enviadagarantia_homepage:
-    path:     /solicitudEnviada
-    defaults: { _controller: emisionGarantiaBundle:Default:solicitudEnviada }
-    
+   
 prueba_garantia_homepage:
     path:     /web
     defaults: { _controller: emisionGarantiaBundle:Default:pagina }
-
-descagar_garantia_homepage:
-    path:     /descargarContrato
-    defaults: { _controller: emisionGarantiaBundle:Default:descargaGarantia }
-
-solicitudes_garantia_financiera:
-    path:     /verSolicitudes
-    defaults: { _controller: emisionGarantiaBundle:Default:solicitudesFinaciera }
-    
-aprobacion_garantia_homepage:
-    path:     /veraprobacion
-    defaults: { _controller: emisionGarantiaBundle:Default:aprobacionGarantia }
-    
-datos_general_proveedor:
-    path:     /datosGenerales
-    defaults: { _controller: emisionGarantiaBundle:Default:datosProveedor }
-    
-aceptar_solictud_proveedor:
-    path:     /logearme
-    defaults: { _controller: emisionGarantiaBundle:Default:logearProveedor }
-    

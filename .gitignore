@@ -11,6 +11,8 @@
 /bin/
 /composer.phar
 nbproject/
+nbproject/*
+
 
 web/config.php
 web/css/*

@@ -1,3 +1,15 @@
 entidad_financiera_homepage:
     path:     /hello/{name}
     defaults: { _controller: EntidadFinancieraBundle:Default:index }
+
+solicitudes_garantia_financiera:
+    path:     /verSolicitudes
+    defaults: { _controller: EntidadFinancieraBundle:Default:solicitudesFinaciera }
+    
+datos_general_proveedor:
+    path:     /datosGenerales
+    defaults: { _controller: EntidadFinancieraBundle:Default:datosProveedor }
+   
+ver_confirmaciones_proveedor:
+    path:     /verConfirmaciones
+    defaults: { _controller: EntidadFinancieraBundle:Default:verConfirmacionProveedor }

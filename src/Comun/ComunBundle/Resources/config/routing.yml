@@ -1,3 +1,7 @@
 comun_homepage:
     path:     /hello/{name}
     defaults: { _controller: ComunBundle:Default:index }
+
+aceptar_solictud_proveedor:
+    path:     /logearme
+    defaults: { _controller: ComunBundle:Default:logearProveedor }
