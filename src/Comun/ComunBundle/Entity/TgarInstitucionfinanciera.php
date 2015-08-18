@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TgarInstitucionfinanciera
  *
- * @ORM\Table(name="tgar_institucionfinanciera", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_institucionfinanciera_pk", columns={"inst_fina_id"})})
+ * @ORM\Table(name="tgar_institucionfinanciera", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_institucionfinanciera_pk", columns={"institucion_id"})}, indexes={@ORM\Index(name="entidadfianciera_direccion2_fk", columns={"ubicacion_id"})})
  * @ORM\Entity
  */
 class TgarInstitucionfinanciera
@@ -15,62 +15,95 @@ class TgarInstitucionfinanciera
     /**
      * @var integer
      *
-     * @ORM\Column(name="inst_fina_id", type="integer", nullable=false)
+     * @ORM\Column(name="institucion_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="tgar_institucionfinanciera_inst_fina_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="tgar_institucionfinanciera_institucion_id_seq", allocationSize=1, initialValue=1)
      */
-    private $instFinaId;
+    private $institucionId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="inst_fina_nombre", type="string", length=128, nullable=true)
+     * @ORM\Column(name="institucion_ruc", type="string", length=17, nullable=false)
      */
-    private $instFinaNombre;
+    private $institucionRuc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="inst_fina_provincia", type="string", length=64, nullable=true)
+     * @ORM\Column(name="institucion_nombre", type="string", length=128, nullable=false)
      */
-    private $instFinaProvincia;
+    private $institucionNombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="inst_fina_canton", type="string", length=64, nullable=true)
-     */
-    private $instFinaCanton;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="inst_fina_parroquia", type="string", length=64, nullable=true)
-     */
-    private $instFinaParroquia;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="inst_fina_direccion", type="string", length=128, nullable=true)
-     */
-    private $instFinaDireccion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="inst_fina_cupodisponible", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="inst_fina_cupodisponible", type="decimal", precision=10, scale=0, nullable=false)
      */
     private $instFinaCupodisponible;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="inst_fina_cupoactual", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="inst_fina_cupoactual", type="decimal", precision=10, scale=0, nullable=false)
      */
     private $instFinaCupoactual;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="institucion_activo", type="boolean", nullable=false)
+     */
+    private $institucionActivo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="institucion_tipo_oficina", type="string", length=1, nullable=false)
+     */
+    private $institucionTipoOficina;
+
+    /**
+     * @var \TgarUbicacion
+     *
+     * @ORM\ManyToOne(targetEntity="TgarUbicacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ubicacion_id", referencedColumnName="ubicacion_id")
+     * })
+     */
+    private $ubicacion;
+
+
+    /**
+     * @var integer
+     */
+    private $instFinaId;
+
+    /**
+     * @var string
+     */
+    private $instFinaNombre;
+
+    /**
+     * @var string
+     */
+    private $instFinaProvincia;
+
+    /**
+     * @var string
+     */
+    private $instFinaCanton;
+
+    /**
+     * @var string
+     */
+    private $instFinaParroquia;
+
+    /**
+     * @var string
+     */
+    private $instFinaDireccion;
 
 
     /**
@@ -242,5 +275,130 @@ class TgarInstitucionfinanciera
     public function getInstFinaCupoactual()
     {
         return $this->instFinaCupoactual;
+    }
+
+    /**
+     * Get institucionId
+     *
+     * @return integer 
+     */
+    public function getInstitucionId()
+    {
+        return $this->institucionId;
+    }
+
+    /**
+     * Set institucionRuc
+     *
+     * @param string $institucionRuc
+     * @return TgarInstitucionfinanciera
+     */
+    public function setInstitucionRuc($institucionRuc)
+    {
+        $this->institucionRuc = $institucionRuc;
+
+        return $this;
+    }
+
+    /**
+     * Get institucionRuc
+     *
+     * @return string 
+     */
+    public function getInstitucionRuc()
+    {
+        return $this->institucionRuc;
+    }
+
+    /**
+     * Set institucionNombre
+     *
+     * @param string $institucionNombre
+     * @return TgarInstitucionfinanciera
+     */
+    public function setInstitucionNombre($institucionNombre)
+    {
+        $this->institucionNombre = $institucionNombre;
+
+        return $this;
+    }
+
+    /**
+     * Get institucionNombre
+     *
+     * @return string 
+     */
+    public function getInstitucionNombre()
+    {
+        return $this->institucionNombre;
+    }
+
+    /**
+     * Set institucionActivo
+     *
+     * @param boolean $institucionActivo
+     * @return TgarInstitucionfinanciera
+     */
+    public function setInstitucionActivo($institucionActivo)
+    {
+        $this->institucionActivo = $institucionActivo;
+
+        return $this;
+    }
+
+    /**
+     * Get institucionActivo
+     *
+     * @return boolean 
+     */
+    public function getInstitucionActivo()
+    {
+        return $this->institucionActivo;
+    }
+
+    /**
+     * Set institucionTipoOficina
+     *
+     * @param string $institucionTipoOficina
+     * @return TgarInstitucionfinanciera
+     */
+    public function setInstitucionTipoOficina($institucionTipoOficina)
+    {
+        $this->institucionTipoOficina = $institucionTipoOficina;
+
+        return $this;
+    }
+
+    /**
+     * Get institucionTipoOficina
+     *
+     * @return string 
+     */
+    public function getInstitucionTipoOficina()
+    {
+        return $this->institucionTipoOficina;
+    }
+
+    /**
+     * Set ubicacion
+     *
+     * @param \Comun\ComunBundle\Entity\TgarUbicacion $ubicacion
+     * @return TgarInstitucionfinanciera
+     */
+    public function setUbicacion(\Comun\ComunBundle\Entity\TgarUbicacion $ubicacion = null)
+    {
+        $this->ubicacion = $ubicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get ubicacion
+     *
+     * @return \Comun\ComunBundle\Entity\TgarUbicacion 
+     */
+    public function getUbicacion()
+    {
+        return $this->ubicacion;
     }
 }

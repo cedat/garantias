@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TgarEstadosolicitud
  *
- * @ORM\Table(name="tgar_estadosolicitud", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_estadosolicitud_pk", columns={"esta_soli_id"})})
+ * @ORM\Table(name="tgar_estadosolicitud", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_estadosolicitud_pk", columns={"estado_solicitud_id"})})
  * @ORM\Entity
  */
 class TgarEstadosolicitud
@@ -15,27 +15,41 @@ class TgarEstadosolicitud
     /**
      * @var integer
      *
-     * @ORM\Column(name="esta_soli_id", type="integer", nullable=false)
+     * @ORM\Column(name="estado_solicitud_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="tgar_estadosolicitud_esta_soli_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\GeneratedValue(strategy="SEQUENCE")     
+     */
+    private $estadoSolicitudId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado_solicitud_nombre", type="string", length=32, nullable=true)
+     */
+    private $estadoSolicitudNombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado_solicitud_descripcion", type="string", length=128, nullable=true)
+     */
+    private $estadoSolicitudDescripcion;
+
+
+    /**
+     * @var integer
      */
     private $estaSoliId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="esta_soli_nombre", type="string", length=32, nullable=true)
      */
     private $estaSoliNombre;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="esta_soli_descripcion", type="string", length=128, nullable=true)
      */
     private $estaSoliDescripcion;
-
 
 
     /**
@@ -92,5 +106,61 @@ class TgarEstadosolicitud
     public function getEstaSoliDescripcion()
     {
         return $this->estaSoliDescripcion;
+    }
+
+    /**
+     * Get estadoSolicitudId
+     *
+     * @return integer 
+     */
+    public function getEstadoSolicitudId()
+    {
+        return $this->estadoSolicitudId;
+    }
+
+    /**
+     * Set estadoSolicitudNombre
+     *
+     * @param string $estadoSolicitudNombre
+     * @return TgarEstadosolicitud
+     */
+    public function setEstadoSolicitudNombre($estadoSolicitudNombre)
+    {
+        $this->estadoSolicitudNombre = $estadoSolicitudNombre;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoSolicitudNombre
+     *
+     * @return string 
+     */
+    public function getEstadoSolicitudNombre()
+    {
+        return $this->estadoSolicitudNombre;
+    }
+
+    /**
+     * Set estadoSolicitudDescripcion
+     *
+     * @param string $estadoSolicitudDescripcion
+     * @return TgarEstadosolicitud
+     */
+    public function setEstadoSolicitudDescripcion($estadoSolicitudDescripcion)
+    {
+        $this->estadoSolicitudDescripcion = $estadoSolicitudDescripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoSolicitudDescripcion
+     *
+     * @return string 
+     */
+    public function getEstadoSolicitudDescripcion()
+    {
+        return $this->estadoSolicitudDescripcion;
     }
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TgarSolicitudgarantia
  *
- * @ORM\Table(name="tgar_solicitudgarantia", indexes={@ORM\Index(name="proccont_soligara_fk", columns={"pro_con_id"})})
+ * @ORM\Table(name="tgar_solicitudgarantia", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_solicitudgarantia_pk", columns={"solicitud_gararantia_id"})}, indexes={@ORM\Index(name="proccont_soligara_fk", columns={"proceso_id"})})
  * @ORM\Entity
  */
 class TgarSolicitudgarantia
@@ -15,37 +15,57 @@ class TgarSolicitudgarantia
     /**
      * @var integer
      *
-     * @ORM\Column(name="sol_gar_id", type="integer", nullable=false)
+     * @ORM\Column(name="solicitud_gararantia_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="tgar_solicitudgarantia_sol_gar_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\SequenceGenerator(sequenceName="tgar_solicitudgarantia_solicitud_gararantia_id_seq", allocationSize=1, initialValue=1)
      */
-    private $solGarId;
+    private $solicitudGararantiaId;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="sol_gar_fecha", type="date", nullable=true)
+     * @ORM\Column(name="solicitud_gararantia_fecha", type="date", nullable=true)
      */
-    private $solGarFecha;
+    private $solicitudGararantiaFecha;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="sol_gar_hora", type="time", nullable=true)
+     * @ORM\Column(name="solicitud_gararantia_hora", type="time", nullable=true)
      */
-    private $solGarHora;
+    private $solicitudGararantiaHora;
 
     /**
      * @var \TgarProcesocontratacion
      *
      * @ORM\ManyToOne(targetEntity="TgarProcesocontratacion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="pro_con_id", referencedColumnName="pro_con_id")
+     *   @ORM\JoinColumn(name="proceso_id", referencedColumnName="proceso_id")
      * })
      */
-    private $proCon;
+    private $proceso;
 
+
+    /**
+     * @var integer
+     */
+    private $solGarId;
+
+    /**
+     * @var \DateTime
+     */
+    private $solGarFecha;
+
+    /**
+     * @var \DateTime
+     */
+    private $solGarHora;
+
+    /**
+     * @var \Comun\ComunBundle\Entity\TgarProcesocontratacion
+     */
+    private $proCon;
 
 
     /**
@@ -125,5 +145,84 @@ class TgarSolicitudgarantia
     public function getProCon()
     {
         return $this->proCon;
+    }
+
+    /**
+     * Get solicitudGararantiaId
+     *
+     * @return integer 
+     */
+    public function getSolicitudGararantiaId()
+    {
+        return $this->solicitudGararantiaId;
+    }
+
+    /**
+     * Set solicitudGararantiaFecha
+     *
+     * @param \DateTime $solicitudGararantiaFecha
+     * @return TgarSolicitudgarantia
+     */
+    public function setSolicitudGararantiaFecha($solicitudGararantiaFecha)
+    {
+        $this->solicitudGararantiaFecha = $solicitudGararantiaFecha;
+
+        return $this;
+    }
+
+    /**
+     * Get solicitudGararantiaFecha
+     *
+     * @return \DateTime 
+     */
+    public function getSolicitudGararantiaFecha()
+    {
+        return $this->solicitudGararantiaFecha;
+    }
+
+    /**
+     * Set solicitudGararantiaHora
+     *
+     * @param \DateTime $solicitudGararantiaHora
+     * @return TgarSolicitudgarantia
+     */
+    public function setSolicitudGararantiaHora($solicitudGararantiaHora)
+    {
+        $this->solicitudGararantiaHora = $solicitudGararantiaHora;
+
+        return $this;
+    }
+
+    /**
+     * Get solicitudGararantiaHora
+     *
+     * @return \DateTime 
+     */
+    public function getSolicitudGararantiaHora()
+    {
+        return $this->solicitudGararantiaHora;
+    }
+
+    /**
+     * Set proceso
+     *
+     * @param \Comun\ComunBundle\Entity\TgarProcesocontratacion $proceso
+     * @return TgarSolicitudgarantia
+     */
+    public function setProceso(\Comun\ComunBundle\Entity\TgarProcesocontratacion $proceso = null)
+    {
+        $this->proceso = $proceso;
+
+        return $this;
+    }
+
+    /**
+     * Get proceso
+     *
+     * @return \Comun\ComunBundle\Entity\TgarProcesocontratacion 
+     */
+    public function getProceso()
+    {
+        return $this->proceso;
     }
 }
