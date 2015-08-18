@@ -12,6 +12,8 @@
 /composer.phar
 nbproject/
 nbproject/*
+nbproject/private/private.xml
+nbproject/private/*
 
 
 web/config.php

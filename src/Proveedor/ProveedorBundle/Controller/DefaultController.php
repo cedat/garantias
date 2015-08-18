@@ -13,7 +13,10 @@ class DefaultController extends Controller
     
     public function solicitudGarantiasAction()
     {
-        return $this->render('ProveedorBundle:Default:solicitudGarantias.html.twig');
+        //$user = $this->getUser();
+        $user = $this->get('security.context')->getToken()->getUser();
+        var_dump($user);
+        return $this->render('ProveedorBundle:Solicitud:solicitudGarantias.html.twig');
     }
     
     public function aprobacionGarantiaAction()
