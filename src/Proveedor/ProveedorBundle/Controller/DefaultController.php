@@ -26,7 +26,7 @@ class DefaultController extends Controller
     
     public function solicitudRecibidasAction()
     {
-        return $this->render('ProveedorBundle:Default:solicitudEnviada.html.twig');
+        return $this->render('ProveedorBundle:Default:solicitudRecibidas.html.twig');
     }
     
     public function descargaGarantiaAction()
