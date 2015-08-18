@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TgarProveedor
  *
- * @ORM\Table(name="tgar_proveedor")
+ * @ORM\Table(name="tgar_proveedor", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_proveedor_pk", columns={"proveedor_id"})}, indexes={@ORM\Index(name="relacion_proveedor_datos_fk", columns={"proveedor_id"}), @ORM\Index(name="direccion_proveedor_fk", columns={"ubicacion_id"})})
  * @ORM\Entity
  */
 class TgarProveedor
@@ -15,682 +15,232 @@ class TgarProveedor
     /**
      * @var integer
      *
-     * @ORM\Column(name="prov_id", type="integer", nullable=false)
+     * @ORM\Column(name="proveedor_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="tgar_proveedor_prov_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\GeneratedValue(strategy="SEQUENCE")     
      */
-    private $provId;
+    private $proveedorId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prov_nombre1", type="string", length=64, nullable=true)
+     * @ORM\Column(name="proveedor_ruc", type="string", length=16, nullable=true)
      */
-    private $provNombre1;
+    private $proveedorRuc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prov_nombre2", type="string", length=64, nullable=true)
+     * @ORM\Column(name="proveedor_categoria", type="string", length=64, nullable=true)
      */
-    private $provNombre2;
+    private $proveedorCategoria;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prov_apellido1", type="string", length=64, nullable=true)
+     * @ORM\Column(name="proveedor_razon_social", type="string", length=64, nullable=true)
      */
-    private $provApellido1;
+    private $proveedorRazonSocial;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prov_apellido2", type="string", length=64, nullable=true)
+     * @ORM\Column(name="proveedor_nombre_comercial", type="string", length=128, nullable=true)
      */
-    private $provApellido2;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="prov_sexo", type="integer", nullable=true)
-     */
-    private $provSexo;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="prov_estacivil", type="integer", nullable=true)
-     */
-    private $provEstacivil;
+    private $proveedorNombreComercial;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prov_ruc", type="string", length=16, nullable=true)
+     * @ORM\Column(name="proveedor_pagina_web", type="string", length=32, nullable=true)
      */
-    private $provRuc;
+    private $proveedorPaginaWeb;
 
     /**
-     * @var string
+     * @var  \DateTime
      *
-     * @ORM\Column(name="prov_pagiweb", type="string", length=32, nullable=true)
+     * @ORM\Column(name="proveedor_fecha_inicio_actividades", type="date", nullable=true)
      */
-    private $provPagiweb;
+    private $proveedorFechaInicioActividades;
 
     /**
-     * @var string
+     * @var \TgarUbicacion
      *
-     * @ORM\Column(name="prov_cateproveedor", type="string", length=64, nullable=true)
+     * @ORM\ManyToOne(targetEntity="TgarUbicacion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ubicacion_id", referencedColumnName="ubicacion_id")
+     * })
      */
-    private $provCateproveedor;
+    private $ubicacion;         
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_niveeducacion", type="string", length=64, nullable=true)
-     */
-    private $provNiveeducacion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_areaespecialidad", type="string", length=64, nullable=true)
-     */
-    private $provAreaespecialidad;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="prov_fechnacimiento", type="date", nullable=true)
-     */
-    private $provFechnacimiento;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_razosocial", type="string", length=64, nullable=true)
-     */
-    private $provRazosocial;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="prov_inicactividades", type="integer", nullable=true)
-     */
-    private $provInicactividades;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_nombcomercial", type="string", length=128, nullable=true)
-     */
-    private $provNombcomercial;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_domitributario", type="string", length=128, nullable=true)
-     */
-    private $provDomitributario;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_intereferencia", type="string", length=128, nullable=true)
-     */
-    private $provIntereferencia;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_numero", type="string", length=8, nullable=true)
-     */
-    private $provNumero;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_edificio", type="string", length=128, nullable=true)
-     */
-    private $provEdificio;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_depaoficina", type="string", length=8, nullable=true)
-     */
-    private $provDepaoficina;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_pais", type="string", length=32, nullable=true)
-     */
-    private $provPais;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prov_estado", type="string", length=32, nullable=true)
-     */
-    private $provEstado;
-
-
-
-    /**
-     * Get provId
+     * Get proveedorId
      *
      * @return integer 
      */
-    public function getProvId()
+    public function getProveedorId()
     {
-        return $this->provId;
+        return $this->proveedorId;
     }
 
     /**
-     * Set provNombre1
+     * Set proveedorRuc
      *
-     * @param string $provNombre1
+     * @param string $proveedorRuc
      * @return TgarProveedor
      */
-    public function setProvNombre1($provNombre1)
+    public function setProveedorRuc($proveedorRuc)
     {
-        $this->provNombre1 = $provNombre1;
+        $this->proveedorRuc = $proveedorRuc;
 
         return $this;
     }
 
     /**
-     * Get provNombre1
+     * Get proveedorRuc
      *
      * @return string 
      */
-    public function getProvNombre1()
+    public function getProveedorRuc()
     {
-        return $this->provNombre1;
+        return $this->proveedorRuc;
     }
 
     /**
-     * Set provNombre2
+     * Set proveedorCategoria
      *
-     * @param string $provNombre2
+     * @param string $proveedorCategoria
      * @return TgarProveedor
      */
-    public function setProvNombre2($provNombre2)
+    public function setProveedorCategoria($proveedorCategoria)
     {
-        $this->provNombre2 = $provNombre2;
+        $this->proveedorCategoria = $proveedorCategoria;
 
         return $this;
     }
 
     /**
-     * Get provNombre2
+     * Get proveedorCategoria
      *
      * @return string 
      */
-    public function getProvNombre2()
+    public function getProveedorCategoria()
     {
-        return $this->provNombre2;
+        return $this->proveedorCategoria;
     }
 
     /**
-     * Set provApellido1
+     * Set proveedorRazonSocial
      *
-     * @param string $provApellido1
+     * @param string $proveedorRazonSocial
      * @return TgarProveedor
      */
-    public function setProvApellido1($provApellido1)
+    public function setProveedorRazonSocial($proveedorRazonSocial)
     {
-        $this->provApellido1 = $provApellido1;
+        $this->proveedorRazonSocial = $proveedorRazonSocial;
 
         return $this;
     }
 
     /**
-     * Get provApellido1
+     * Get proveedorRazonSocial
      *
      * @return string 
      */
-    public function getProvApellido1()
+    public function getProveedorRazonSocial()
     {
-        return $this->provApellido1;
+        return $this->proveedorRazonSocial;
     }
 
     /**
-     * Set provApellido2
+     * Set proveedorNombreComercial
      *
-     * @param string $provApellido2
+     * @param string $proveedorNombreComercial
      * @return TgarProveedor
      */
-    public function setProvApellido2($provApellido2)
+    public function setProveedorNombreComercial($proveedorNombreComercial)
     {
-        $this->provApellido2 = $provApellido2;
+        $this->proveedorNombreComercial = $proveedorNombreComercial;
 
         return $this;
     }
 
     /**
-     * Get provApellido2
+     * Get proveedorNombreComercial
      *
      * @return string 
      */
-    public function getProvApellido2()
+    public function getProveedorNombreComercial()
     {
-        return $this->provApellido2;
+        return $this->proveedorNombreComercial;
     }
 
     /**
-     * Set provSexo
+     * Set proveedorPaginaWeb
      *
-     * @param integer $provSexo
+     * @param string $proveedorPaginaWeb
      * @return TgarProveedor
      */
-    public function setProvSexo($provSexo)
+    public function setProveedorPaginaWeb($proveedorPaginaWeb)
     {
-        $this->provSexo = $provSexo;
+        $this->proveedorPaginaWeb = $proveedorPaginaWeb;
 
         return $this;
     }
 
     /**
-     * Get provSexo
-     *
-     * @return integer 
-     */
-    public function getProvSexo()
-    {
-        return $this->provSexo;
-    }
-
-    /**
-     * Set provEstacivil
-     *
-     * @param integer $provEstacivil
-     * @return TgarProveedor
-     */
-    public function setProvEstacivil($provEstacivil)
-    {
-        $this->provEstacivil = $provEstacivil;
-
-        return $this;
-    }
-
-    /**
-     * Get provEstacivil
-     *
-     * @return integer 
-     */
-    public function getProvEstacivil()
-    {
-        return $this->provEstacivil;
-    }
-
-    /**
-     * Set provRuc
-     *
-     * @param string $provRuc
-     * @return TgarProveedor
-     */
-    public function setProvRuc($provRuc)
-    {
-        $this->provRuc = $provRuc;
-
-        return $this;
-    }
-
-    /**
-     * Get provRuc
+     * Get proveedorPaginaWeb
      *
      * @return string 
      */
-    public function getProvRuc()
+    public function getProveedorPaginaWeb()
     {
-        return $this->provRuc;
+        return $this->proveedorPaginaWeb;
     }
 
     /**
-     * Set provPagiweb
+     * Set proveedorFechaInicioActividades
      *
-     * @param string $provPagiweb
+     * @param \DateTime $proveedorFechaInicioActividades
      * @return TgarProveedor
      */
-    public function setProvPagiweb($provPagiweb)
+    public function setProveedorFechaInicioActividades($proveedorFechaInicioActividades)
     {
-        $this->provPagiweb = $provPagiweb;
+        $this->proveedorFechaInicioActividades = $proveedorFechaInicioActividades;
 
         return $this;
     }
 
     /**
-     * Get provPagiweb
-     *
-     * @return string 
-     */
-    public function getProvPagiweb()
-    {
-        return $this->provPagiweb;
-    }
-
-    /**
-     * Set provCateproveedor
-     *
-     * @param string $provCateproveedor
-     * @return TgarProveedor
-     */
-    public function setProvCateproveedor($provCateproveedor)
-    {
-        $this->provCateproveedor = $provCateproveedor;
-
-        return $this;
-    }
-
-    /**
-     * Get provCateproveedor
-     *
-     * @return string 
-     */
-    public function getProvCateproveedor()
-    {
-        return $this->provCateproveedor;
-    }
-
-    /**
-     * Set provNiveeducacion
-     *
-     * @param string $provNiveeducacion
-     * @return TgarProveedor
-     */
-    public function setProvNiveeducacion($provNiveeducacion)
-    {
-        $this->provNiveeducacion = $provNiveeducacion;
-
-        return $this;
-    }
-
-    /**
-     * Get provNiveeducacion
-     *
-     * @return string 
-     */
-    public function getProvNiveeducacion()
-    {
-        return $this->provNiveeducacion;
-    }
-
-    /**
-     * Set provAreaespecialidad
-     *
-     * @param string $provAreaespecialidad
-     * @return TgarProveedor
-     */
-    public function setProvAreaespecialidad($provAreaespecialidad)
-    {
-        $this->provAreaespecialidad = $provAreaespecialidad;
-
-        return $this;
-    }
-
-    /**
-     * Get provAreaespecialidad
-     *
-     * @return string 
-     */
-    public function getProvAreaespecialidad()
-    {
-        return $this->provAreaespecialidad;
-    }
-
-    /**
-     * Set provFechnacimiento
-     *
-     * @param \DateTime $provFechnacimiento
-     * @return TgarProveedor
-     */
-    public function setProvFechnacimiento($provFechnacimiento)
-    {
-        $this->provFechnacimiento = $provFechnacimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get provFechnacimiento
+     * Get proveedorFechaInicioActividades
      *
      * @return \DateTime 
      */
-    public function getProvFechnacimiento()
+    public function getProveedorFechaInicioActividades()
     {
-        return $this->provFechnacimiento;
+        return $this->proveedorFechaInicioActividades;
     }
 
     /**
-     * Set provRazosocial
+     * Set ubicacion
      *
-     * @param string $provRazosocial
+     * @param \Comun\ComunBundle\Entity\TgarUbicacion $ubicacion
      * @return TgarProveedor
      */
-    public function setProvRazosocial($provRazosocial)
+    public function setUbicacion(\Comun\ComunBundle\Entity\TgarUbicacion $ubicacion = null)
     {
-        $this->provRazosocial = $provRazosocial;
+        $this->ubicacion = $ubicacion;
 
         return $this;
     }
 
     /**
-     * Get provRazosocial
+     * Get ubicacion
      *
-     * @return string 
+     * @return \Comun\ComunBundle\Entity\TgarUbicacion 
      */
-    public function getProvRazosocial()
+    public function getUbicacion()
     {
-        return $this->provRazosocial;
-    }
-
-    /**
-     * Set provInicactividades
-     *
-     * @param integer $provInicactividades
-     * @return TgarProveedor
-     */
-    public function setProvInicactividades($provInicactividades)
-    {
-        $this->provInicactividades = $provInicactividades;
-
-        return $this;
-    }
-
-    /**
-     * Get provInicactividades
-     *
-     * @return integer 
-     */
-    public function getProvInicactividades()
-    {
-        return $this->provInicactividades;
-    }
-
-    /**
-     * Set provNombcomercial
-     *
-     * @param string $provNombcomercial
-     * @return TgarProveedor
-     */
-    public function setProvNombcomercial($provNombcomercial)
-    {
-        $this->provNombcomercial = $provNombcomercial;
-
-        return $this;
-    }
-
-    /**
-     * Get provNombcomercial
-     *
-     * @return string 
-     */
-    public function getProvNombcomercial()
-    {
-        return $this->provNombcomercial;
-    }
-
-    /**
-     * Set provDomitributario
-     *
-     * @param string $provDomitributario
-     * @return TgarProveedor
-     */
-    public function setProvDomitributario($provDomitributario)
-    {
-        $this->provDomitributario = $provDomitributario;
-
-        return $this;
-    }
-
-    /**
-     * Get provDomitributario
-     *
-     * @return string 
-     */
-    public function getProvDomitributario()
-    {
-        return $this->provDomitributario;
-    }
-
-    /**
-     * Set provIntereferencia
-     *
-     * @param string $provIntereferencia
-     * @return TgarProveedor
-     */
-    public function setProvIntereferencia($provIntereferencia)
-    {
-        $this->provIntereferencia = $provIntereferencia;
-
-        return $this;
-    }
-
-    /**
-     * Get provIntereferencia
-     *
-     * @return string 
-     */
-    public function getProvIntereferencia()
-    {
-        return $this->provIntereferencia;
-    }
-
-    /**
-     * Set provNumero
-     *
-     * @param string $provNumero
-     * @return TgarProveedor
-     */
-    public function setProvNumero($provNumero)
-    {
-        $this->provNumero = $provNumero;
-
-        return $this;
-    }
-
-    /**
-     * Get provNumero
-     *
-     * @return string 
-     */
-    public function getProvNumero()
-    {
-        return $this->provNumero;
-    }
-
-    /**
-     * Set provEdificio
-     *
-     * @param string $provEdificio
-     * @return TgarProveedor
-     */
-    public function setProvEdificio($provEdificio)
-    {
-        $this->provEdificio = $provEdificio;
-
-        return $this;
-    }
-
-    /**
-     * Get provEdificio
-     *
-     * @return string 
-     */
-    public function getProvEdificio()
-    {
-        return $this->provEdificio;
-    }
-
-    /**
-     * Set provDepaoficina
-     *
-     * @param string $provDepaoficina
-     * @return TgarProveedor
-     */
-    public function setProvDepaoficina($provDepaoficina)
-    {
-        $this->provDepaoficina = $provDepaoficina;
-
-        return $this;
-    }
-
-    /**
-     * Get provDepaoficina
-     *
-     * @return string 
-     */
-    public function getProvDepaoficina()
-    {
-        return $this->provDepaoficina;
-    }
-
-    /**
-     * Set provPais
-     *
-     * @param string $provPais
-     * @return TgarProveedor
-     */
-    public function setProvPais($provPais)
-    {
-        $this->provPais = $provPais;
-
-        return $this;
-    }
-
-    /**
-     * Get provPais
-     *
-     * @return string 
-     */
-    public function getProvPais()
-    {
-        return $this->provPais;
-    }
-
-    /**
-     * Set provEstado
-     *
-     * @param string $provEstado
-     * @return TgarProveedor
-     */
-    public function setProvEstado($provEstado)
-    {
-        $this->provEstado = $provEstado;
-
-        return $this;
-    }
-
-    /**
-     * Get provEstado
-     *
-     * @return string 
-     */
-    public function getProvEstado()
-    {
-        return $this->provEstado;
+        return $this->ubicacion;
     }
 }
