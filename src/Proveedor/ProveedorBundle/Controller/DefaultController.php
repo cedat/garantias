@@ -20,9 +20,11 @@ class DefaultController extends Controller
     }
     
     public function aprobacionGarantiaAction()
-    {
-        $fecha[0] = date("d/m/Y"); 
-        $fecha[1] = date("H:i:s");
+    {   
+        $fecha[0] = date("Y/m/d H:i:s");        
+        $fecha[3]= strtotime ( '+2 day' , strtotime ( $fecha[0] ) ) ;
+        $fecha[0]= date ( 'd/m/Y' , $fecha[3] );
+        $fecha[1]= date ( 'H:i:s' , $fecha[3] );
         
         return $this->render('ProveedorBundle:Default:aprobacionGarantia.html.twig', array('valor' => $fecha));
     }
