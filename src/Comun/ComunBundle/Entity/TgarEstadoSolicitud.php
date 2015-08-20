@@ -5,19 +5,20 @@ namespace Comun\ComunBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TgarEstadosolicitud
+ * TgarEstadoSolicitud
  *
- * @ORM\Table(name="tgar_estadosolicitud", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_estadosolicitud_pk", columns={"estado_solicitud_id"})})
+ * @ORM\Table(name="tgar_estado_solicitud", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_estado_solicitud_pk", columns={"estado_solicitud_id"})})
  * @ORM\Entity
  */
-class TgarEstadosolicitud
+class TgarEstadoSolicitud
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="estado_solicitud_id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")     
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="tgar_estado_solicitud_estado_solicitud_id_seq", allocationSize=1, initialValue=1)
      */
     private $estadoSolicitudId;
 
@@ -36,77 +37,6 @@ class TgarEstadosolicitud
     private $estadoSolicitudDescripcion;
 
 
-    /**
-     * @var integer
-     */
-    private $estaSoliId;
-
-    /**
-     * @var string
-     */
-    private $estaSoliNombre;
-
-    /**
-     * @var string
-     */
-    private $estaSoliDescripcion;
-
-
-    /**
-     * Get estaSoliId
-     *
-     * @return integer 
-     */
-    public function getEstaSoliId()
-    {
-        return $this->estaSoliId;
-    }
-
-    /**
-     * Set estaSoliNombre
-     *
-     * @param string $estaSoliNombre
-     * @return TgarEstadosolicitud
-     */
-    public function setEstaSoliNombre($estaSoliNombre)
-    {
-        $this->estaSoliNombre = $estaSoliNombre;
-
-        return $this;
-    }
-
-    /**
-     * Get estaSoliNombre
-     *
-     * @return string 
-     */
-    public function getEstaSoliNombre()
-    {
-        return $this->estaSoliNombre;
-    }
-
-    /**
-     * Set estaSoliDescripcion
-     *
-     * @param string $estaSoliDescripcion
-     * @return TgarEstadosolicitud
-     */
-    public function setEstaSoliDescripcion($estaSoliDescripcion)
-    {
-        $this->estaSoliDescripcion = $estaSoliDescripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get estaSoliDescripcion
-     *
-     * @return string 
-     */
-    public function getEstaSoliDescripcion()
-    {
-        return $this->estaSoliDescripcion;
-    }
 
     /**
      * Get estadoSolicitudId
@@ -122,7 +52,7 @@ class TgarEstadosolicitud
      * Set estadoSolicitudNombre
      *
      * @param string $estadoSolicitudNombre
-     * @return TgarEstadosolicitud
+     * @return TgarEstadoSolicitud
      */
     public function setEstadoSolicitudNombre($estadoSolicitudNombre)
     {
@@ -145,7 +75,7 @@ class TgarEstadosolicitud
      * Set estadoSolicitudDescripcion
      *
      * @param string $estadoSolicitudDescripcion
-     * @return TgarEstadosolicitud
+     * @return TgarEstadoSolicitud
      */
     public function setEstadoSolicitudDescripcion($estadoSolicitudDescripcion)
     {
