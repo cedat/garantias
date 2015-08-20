@@ -1,5 +1,9 @@
 ## YAML Template.
 ---
+## mensajes de login
+login.mensaje.registro: Por favor reg&iacute;strese para poder ingresar
+
+
 ## pantalla listado de procedimientos adjudicados para la solicitu de la garantía
 
 solicitud.listado: LISTADO DE PROCEDIMIENTOS SOBRE LAS CUALES PUEDE APLICAR UNA GARANTÍA
