@@ -1,0 +1,9 @@
+EntidadFinancieraBundle\Entity\TgarInstitucionfinanciera:
+properties:
+comisionCobrar:
+- NotBlank: ~
+- Length:
+        min: 2
+        max: 50
+        minMessage: "Tu primer nombre por lo menos debe tener {{ limit }} caracteres de largo"
+        maxMessage: "Tu primer nombre no puede tener más de {{ limit }} caracteres de largo"               
