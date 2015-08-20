@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+{% block body %}    
+  <div id="wrapper">
+      <div id="page-wrapper">
+         <div class="alert alert-info" role="alert" align="center">{%trans%}solicitud.listado{%endtrans%}</div>         
+         {% for proc in datos %}
+             <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong class="primary-font">{{proc.proceso.procesoObjetoProceso}}</strong>
+                    </div>
+                    <!-- /.panel-heading -->                        
+                    <div class="panel-body">
+                        <div class="col-md-8">
+                            <h5><strong class="primary-font">{%trans%}solicitud.entidad{%endtrans%}:</strong> {{proc.proceso.procesoEntidad}}</h5>
+                            <h5><strong class="primary-font">{%trans%}solicitud.codigo.procedimiento{%endtrans%}:</strong> {{proc.proceso.procesoCodigo}}</h5>
+                            <h5><strong class="primary-font">{%trans%}solicitud.descripcion.lote{%endtrans%}:</strong> {{proc.loteDescripcion}}</h5>
+                            <h5><strong class="primary-font">{%trans%}solicitud.cantidad{%endtrans%}:</strong> {{proc.loteCantidad}}</h5>
+                            <h5><strong class="primary-font">{%trans%}solicitud.unidad{%endtrans%}:</strong> {{proc.loteUnidad}}</h5>                                                   
+                        </div>
+                        <div class="col-md4">
+                            <br/><br/>
+                            <a href="{{path('solicitud_garantia_solicitar', {'id': proc.loteId})}}" class="btn btn-primary btn-lg">Solicitar Garantía</a>
+                            
+                        </div>
+                    </div>                       
+            </div>                        
+         {% endfor %}    
+      </div>   
+  </div>  
+    
+{% endblock %}      
+    

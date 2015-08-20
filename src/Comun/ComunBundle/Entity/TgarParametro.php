@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TgarParametro
  *
- * @ORM\Table(name="tgar_parametro")
+ * @ORM\Table(name="tgar_parametro", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_parametro_pk", columns={"parametro_id"})})
  * @ORM\Entity
  */
 class TgarParametro

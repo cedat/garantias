@@ -1,0 +1,10 @@
+## YAML Template.
+---
+## pantalla listado de procedimientos adjudicados para la solicitu de la garantía
+
+solicitud.listado: LISTADO DE PROCEDIMIENTOS SOBRE LAS CUALES PUEDE APLICAR UNA GARANTÍA
+solicitud.entidad: Entidad Contratante
+solicitud.codigo.procedimiento: Código del Procedimiento
+solicitud.descripcion.lote: Descripción del Lote Adjudicado
+solicitud.cantidad: Cantidad
+solicitud.unidad: Unidad                               

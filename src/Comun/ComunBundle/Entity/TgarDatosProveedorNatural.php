@@ -5,12 +5,12 @@ namespace Comun\ComunBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TgarDatosProveedor
+ * TgarDatosProveedorNatural
  *
- * @ORM\Table(name="tgar_datos_proveedor", uniqueConstraints={@ORM\UniqueConstraint(name="tgar_datos_proveedor_pk", columns={"proveedor_id"})}, indexes={@ORM\Index(name="relacion_proveedor_datos2_fk", columns={"proveedor_id"})})
+ * @ORM\Table(name="tgar_datos_proveedor_natural")
  * @ORM\Entity
  */
-class TgarDatosProveedor
+class TgarDatosProveedorNatural
 {
     /**
      * @var string
@@ -78,13 +78,14 @@ class TgarDatosProveedor
     /**
      * @var \TgarProveedor
      *
-     * @ORM\ManyToOne(targetEntity="TgarProveedor")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="TgarProveedor")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="proveedor_id", referencedColumnName="proveedor_id")
+     *   @ORM\JoinColumn(name="datos_proveedor_id", referencedColumnName="proveedor_id")
      * })
      */
-    private $proveedorId;
+    private $datosProveedor;
 
 
 
@@ -92,7 +93,7 @@ class TgarDatosProveedor
      * Set datosPrimerNombre
      *
      * @param string $datosPrimerNombre
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosPrimerNombre($datosPrimerNombre)
     {
@@ -115,7 +116,7 @@ class TgarDatosProveedor
      * Set datosSegundoNombre
      *
      * @param string $datosSegundoNombre
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosSegundoNombre($datosSegundoNombre)
     {
@@ -138,7 +139,7 @@ class TgarDatosProveedor
      * Set datosApellidoPaterno
      *
      * @param string $datosApellidoPaterno
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosApellidoPaterno($datosApellidoPaterno)
     {
@@ -161,7 +162,7 @@ class TgarDatosProveedor
      * Set datosApellidoMaterno
      *
      * @param string $datosApellidoMaterno
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosApellidoMaterno($datosApellidoMaterno)
     {
@@ -184,7 +185,7 @@ class TgarDatosProveedor
      * Set datosSexo
      *
      * @param string $datosSexo
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosSexo($datosSexo)
     {
@@ -207,7 +208,7 @@ class TgarDatosProveedor
      * Set datosEstadoCivil
      *
      * @param string $datosEstadoCivil
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosEstadoCivil($datosEstadoCivil)
     {
@@ -230,7 +231,7 @@ class TgarDatosProveedor
      * Set datosNivelEducacion
      *
      * @param string $datosNivelEducacion
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosNivelEducacion($datosNivelEducacion)
     {
@@ -253,7 +254,7 @@ class TgarDatosProveedor
      * Set datosAreaEspecialidad
      *
      * @param string $datosAreaEspecialidad
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosAreaEspecialidad($datosAreaEspecialidad)
     {
@@ -276,7 +277,7 @@ class TgarDatosProveedor
      * Set datosFechaNacimiento
      *
      * @param \DateTime $datosFechaNacimiento
-     * @return TgarDatosProveedor
+     * @return TgarDatosProveedorNatural
      */
     public function setDatosFechaNacimiento($datosFechaNacimiento)
     {
@@ -296,25 +297,25 @@ class TgarDatosProveedor
     }
 
     /**
-     * Set proveedorId
+     * Set datosProveedor
      *
-     * @param \Comun\ComunBundle\Entity\TgarProveedor $proveedorId
-     * @return TgarDatosProveedor
+     * @param \Comun\ComunBundle\Entity\TgarProveedor $datosProveedor
+     * @return TgarDatosProveedorNatural
      */
-    public function setProveedorId(\Comun\ComunBundle\Entity\TgarProveedor $proveedorId)
+    public function setDatosProveedor(\Comun\ComunBundle\Entity\TgarProveedor $datosProveedor)
     {
-        $this->proveedorId = $proveedorId;
+        $this->datosProveedor = $datosProveedor;
 
         return $this;
     }
 
     /**
-     * Get proveedorId
+     * Get datosProveedor
      *
      * @return \Comun\ComunBundle\Entity\TgarProveedor 
      */
-    public function getProveedorId()
+    public function getDatosProveedor()
     {
-        return $this->proveedorId;
+        return $this->datosProveedor;
     }
 }
